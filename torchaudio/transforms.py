@@ -600,6 +600,9 @@ class LFCC(torch.nn.Module):
     r"""Create the linear-frequency cepstrum coefficients from an audio signal.
 
     By default, this calculates the LFCC on the DB-scaled linear filtered spectrogram.
+    This is not the textbook implementation, but is implemented here to
+    give consistency with librosa.
+
     This output depends on the maximum value in the input spectrogram, and so
     may return different values for an audio clip split into snippets vs. a
     a full clip.
@@ -670,7 +673,11 @@ class LFCC(torch.nn.Module):
             waveform (Tensor): Tensor of audio of dimension (..., time).
 
         Returns:
+<<<<<<< HEAD
             Tensor: specgram_mel_db of size (..., ``n_mfcc``, time).
+=======
+            Tensor: Linear Frequency Cepstral Coefficients of size (..., ``n_lfcc``, time).
+>>>>>>> 6f9005b58ebd117507121e9936f356235f5ddf33
         """
         specgram = self.Spectrogram(waveform)
 
