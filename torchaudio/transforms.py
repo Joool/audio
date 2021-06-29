@@ -671,11 +671,7 @@ class LFCC(torch.nn.Module):
             waveform (Tensor): Tensor of audio of dimension (..., time).
 
         Returns:
-<<<<<<< HEAD
-            Tensor: specgram_mel_db of size (..., ``n_mfcc``, time).
-=======
             Tensor: Linear Frequency Cepstral Coefficients of size (..., ``n_lfcc``, time).
->>>>>>> 6f9005b58ebd117507121e9936f356235f5ddf33
         """
         specgram = self.Spectrogram(waveform)
 
