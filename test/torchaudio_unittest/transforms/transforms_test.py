@@ -164,6 +164,8 @@ class Tester(common_utils.TorchaudioTestCase):
         self.assertTrue(torch_mfcc_norm_none.allclose(norm_check))
 
     def test_lfcc_defaults(self):
+        """Check default settings for LFCC transform.
+        """
         sample_rate = 16000
         audio = common_utils.get_whitenoise(sample_rate=sample_rate)
 
@@ -173,19 +175,19 @@ class Tester(common_utils.TorchaudioTestCase):
                                                     n_filter=n_filter,
                                                     n_lfcc=n_lfcc,
                                                     norm='ortho')
-        # check defaults
         torch_lfcc = lfcc_transform(audio)  # (1, 40, 81)
         self.assertEqual(torch_lfcc.dim(), 3)
         self.assertEqual(torch_lfcc.shape[1], n_lfcc)
         self.assertEqual(torch_lfcc.shape[2], 81, torch_lfcc.shape[2])
 
     def test_lfcc_arg_passthrough(self):
+        """Check if kwargs get correctly passed to the underlying Spectrogram transform.
+        """
         sample_rate = 16000
         audio = common_utils.get_whitenoise(sample_rate=sample_rate)
 
         n_lfcc = 40
         n_filter = 128
-        # check speckwargs are passed through
         speckwargs = {'win_length': 200}
         lfcc_transform = torchaudio.transforms.LFCC(sample_rate=sample_rate,
                                                     n_filter=n_filter,
@@ -196,6 +198,8 @@ class Tester(common_utils.TorchaudioTestCase):
         self.assertEqual(torch_lfcc.shape[2], 161)
 
     def test_lfcc_norms(self):
+        """Check if LFCC-DCT norm works correctly.
+        """
         sample_rate = 16000
         audio = common_utils.get_whitenoise(sample_rate=sample_rate)
 
@@ -206,7 +210,6 @@ class Tester(common_utils.TorchaudioTestCase):
                                                     n_lfcc=n_lfcc,
                                                     norm='ortho')
 
-        # check norms work correctly
         lfcc_transform_norm_none = torchaudio.transforms.LFCC(sample_rate=sample_rate,
                                                               n_filter=n_filter,
                                                               n_lfcc=n_lfcc,
