@@ -203,6 +203,8 @@ class Tester(common_utils.TorchaudioTestCase):
         audio = common_utils.get_whitenoise(sample_rate=16_000)
 
         sample_rate = 16000
+        audio = common_utils.get_whitenoise(sample_rate=sample_rate)
+
         n_lfcc = 40
         n_filter = 128
         # check speckwargs are passed through
@@ -221,6 +223,8 @@ class Tester(common_utils.TorchaudioTestCase):
         audio = common_utils.get_whitenoise(sample_rate=16_000)
 
         sample_rate = 16000
+        audio = common_utils.get_whitenoise(sample_rate=sample_rate)
+
         n_lfcc = 40
         n_filter = 128
         lfcc_transform = torchaudio.transforms.LFCC(sample_rate=sample_rate,
