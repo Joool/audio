@@ -198,6 +198,8 @@ class Tester(common_utils.TorchaudioTestCase):
         self.assertEqual(torch_lfcc.shape[2], 81, torch_lfcc.shape[2])
 
     def test_lfcc_arg_passthrough(self):
+        """Check kwargs get correctly passed to the Spectrogram transform.
+        """
         audio = common_utils.get_whitenoise(sample_rate=16_000)
 
         sample_rate = 16000
@@ -214,6 +216,8 @@ class Tester(common_utils.TorchaudioTestCase):
         self.assertEqual(torch_lfcc.shape[2], 161)
 
     def test_lfcc_norms(self):
+        """Check if LFCC-DCT norms work correctly.
+        """
         audio = common_utils.get_whitenoise(sample_rate=16_000)
 
         sample_rate = 16000
